@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "name": "Language Reactor Customizer",
+    "version": "1.0",
+    "description": "Customizes Language Reactor interface and intercepts Lexa responses",
+    "permissions": [
+        "scripting",
+        "webRequest",
+        "activeTab",
+        "declarativeNetRequest",
+        "tabs"
+    ],
+    "host_permissions": [
+        "*://*.netflix.com/*",
+        "*://*.youtube.com/*",
+        "*://*.languagereactor.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.netflix.com/*",
+                "*://*.youtube.com/*",
+                "*://*.languagereactor.com/*"
+            ],
+            "js": [
+                "content_scripts/lr_customize.js",
+                "content_scripts/intercept_lexa_response.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "content_scripts/*",
+                "inject.js"
+            ],
+            "matches": [
+                "*://*.netflix.com/*",
+                "*://*.youtube.com/*",
+                "*://*.languagereactor.com/*"
+            ]
+        }
+    ],
+    "icons": {
+        "128": "icons/icon.png"
+    }
+}
